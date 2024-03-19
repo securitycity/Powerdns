@@ -2,7 +2,7 @@
 
 exho "installing Power DNS\n\n"
 # Update package lists
-sudo apt update
+sudo apt update && sudo apt upgrade
 
 # Install required packages
 sudo apt install -y software-properties-common curl git unzip python3-pip apache2 libapache2-mod-wsgi-py3
@@ -86,10 +86,9 @@ cp apache2_pdns_admin.conf /etc/apache2/sites-available/pdns-admin.conf
 cp pdns_admin_config.json.example pdns_admin_config.json
 
 # Edit configuration files
-sudo sed -i "s/CHANGEMECHANGETHIS/your_password_here/g" config.py
-sudo sed -i "s/PDNS_API_URL/https:\/\/your_pdns_server\/api/g" pdns_admin_config.json
-sudo sed -i "s/PDNS_API_KEY/your_pdns_api_key/g" pdns_admin_config.json
-sudo sed -i "s/SECRET_KEY/your_secret_key/g" pdns_admin_config.json
+sudo sed -i "PDNS_API_URL/https" pdns_admin_config.json
+sudo sed -i "PDNS_API_KEY" pdns_admin_config.json
+sudo sed -i "SECRET_KEY" pdns_admin_config.json
 # Initialize pdns-admin database
 
 # New configs
