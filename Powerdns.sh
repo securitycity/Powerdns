@@ -1,8 +1,8 @@
 #!/bin/bash
 
-exho "installing Power DNS\n\n"
+echo "installing Power DNS\n\n"
 # Update package lists
-sudo apt update && sudo apt upgrade
+sudo apt update && sudo apt upgrade -y
 
 # Install required packages
 sudo apt install -y software-properties-common curl git unzip python3-pip apache2 libapache2-mod-wsgi-py3
