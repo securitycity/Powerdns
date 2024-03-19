@@ -80,17 +80,6 @@ cd PowerDNS-Admin
 # Install required Python packages
 sudo pip3 install -r requirements.txt
 
-#Copy configuration files
-cp config_template.py config.py
-cp apache2_pdns_admin.conf /etc/apache2/sites-available/pdns-admin.conf
-cp pdns_admin_config.json.example pdns_admin_config.json
-
-# Edit configuration files
-sudo sed -i "PDNS_API_URL/https" pdns_admin_config.json
-sudo sed -i "PDNS_API_KEY" pdns_admin_config.json
-sudo sed -i "SECRET_KEY" pdns_admin_config.json
-# Initialize pdns-admin database
-
 # New configs
 echo "[client]
 user=root
@@ -189,10 +178,4 @@ include-dir=/etc/powerdns/pdns.d" | sudo tee /etc/powerdns/pdns.conf
 
 #restart the server
 systemctl restart pdns
-
-# Configure Apache2 for pdns-admin
-sudo cp apache2_pdns_admin.conf /etc/apache2/sites-available/pdns-admin.conf
-sudo a2ensite pdns-admin.conf
-
-# Start pdns-admin service
-sudo python3 manage.py runserver
+systemctl status pdns
